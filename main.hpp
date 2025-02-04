@@ -18,8 +18,6 @@ enum class GameFinalState : short
     Draw = 2,
 };
 
-INT WINAPI WinMain(HINSTANCE hInstance,HINSTANCE hPrevInstance,LPSTR lpCmdLine,int nShowCmd);
-
 LRESULT CALLBACK WindowEvents(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
 void SetButton(int id,int turn);

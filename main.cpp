@@ -1,4 +1,4 @@
-#include "main.h"
+#include "main.hpp"
 
 HWND button1,button2,button3;
 HWND button4,button5,button6;
@@ -20,7 +20,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR pCmdLine,
 
     RegisterClass(&wndclass);
 
-    MainWindow = CreateWindow("TicTacToeCls","Tic Tac Toe",WS_OVERLAPPEDWINDOW,0,0,250,200,nullptr,nullptr,hInstance,nullptr);
+    //more width is given so title is visible.
+    MainWindow = CreateWindow("TicTacToeCls","Tic Tac Toe",WS_OVERLAPPEDWINDOW,0,0,250,150,nullptr,nullptr,hInstance,nullptr);
 
     button1 = CreateWindow("Button","_",WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON,10,10,20,20,MainWindow,(HMENU)BUTTON1_EVENT_ID,hInstance,nullptr);
     button2 = CreateWindow("Button","_",WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON,40,10,20,20,MainWindow,(HMENU)BUTTON2_EVENT_ID,hInstance,nullptr);
@@ -34,7 +35,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR pCmdLine,
     button8 = CreateWindow("Button","_",WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON,40,70,20,20,MainWindow,(HMENU)BUTTON2_EVENT_ID,hInstance,nullptr);
     button9 = CreateWindow("Button","_",WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON,70,70,20,20,MainWindow,(HMENU)BUTTON2_EVENT_ID,hInstance,nullptr);
 
-    ShowWindow(MainWindow,1);
+    ShowWindow(MainWindow, SW_NORMAL);
 
     MSG msg = {0};
     while(GetMessage(&msg,nullptr,0,0))
@@ -88,7 +89,11 @@ LRESULT CALLBACK WindowEvents(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam
             // All painting occurs here, between BeginPaint and EndPaint.
             FillRect(hdc, &ps.rcPaint, (HBRUSH) (COLOR_WINDOW+1));
             EndPaint(hwnd, &ps);
+            break;
         }
+        case WM_CLOSE:
+            exit(0);
+            return 0;
         default: break;
     }
     return DefWindowProc(hwnd, uMsg, wParam, lParam);

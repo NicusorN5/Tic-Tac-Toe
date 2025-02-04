@@ -38,6 +38,7 @@
 			<Add library="comctl32" />
 		</Linker>
 		<Unit filename="main.cpp" />
+		<Unit filename="main.hpp" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>
